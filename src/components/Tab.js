@@ -4,7 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-
+import "../Index.css";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -47,25 +47,260 @@ export default function BasicTabs() {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Box
+        sx={{
+          borderBottom: 1,
+          borderColor: "divider",
+        }}
+      >
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          centered
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="Basic" {...a11yProps(0)} />
+          <Tab label="Social" {...a11yProps(1)} />
+          <Tab label="Certificates" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Item One
+        <div className="formbox">
+          <p className="subtitle">Full Name*</p>
+
+          <input
+            name="name"
+            type="text"
+            id="n1"
+            className="input input-tab1"
+            onchange="correcaoDoDado('n1')"
+            placeholder="Foo Bar"
+            required
+          />
+        </div>
+        <div className="formbox">
+          <p className="subtitle">Nickname*</p>
+
+          <input
+            name="nickname"
+            type="text"
+            id="nk"
+            className="input input-tab1"
+            onchange="correcaoDoDado('nk')"
+            placeholder="Juanito"
+            required
+          />
+        </div>
+
+        <div className="contato">
+          <div className="formbox formbox-email">
+            <p className="subtitle">E-mail*</p>
+
+            <input
+              name="email"
+              type="email"
+              id="email"
+              className="input input-tab1"
+              onchange="correcaoDoDado('email')"
+              placeholder="foo@bar.com"
+              required
+            />
+          </div>
+          <div className="formbox formbox-phone">
+            <p className="subtitle">Phone*</p>
+
+            <input
+              name="phone"
+              type="text"
+              id="tel"
+              className="input input-tab1"
+              onchange="correcaoDoDado('tel')"
+              placeholder="(00) 0 0000-0000"
+              required
+            />
+          </div>
+        </div>
+
+        <p id="birthday-text" className="subtitle">
+          Birthday*
+        </p>
+        <div className="birthday">
+          <div className="birthday-date">
+            <p className="subtitle">Day*</p>
+            <input
+              type="number"
+              min="01"
+              max="31"
+              name="day"
+              id="day"
+              className="input input-tab1"
+              onchange="correcaoDoDado('day')"
+              required
+            />
+          </div>
+          <div className="birthday-date">
+            <p className="subtitle">Month*</p>
+            <input
+              type="number"
+              min="01"
+              max="12"
+              name="month"
+              id="month"
+              className="input input-tab1"
+              onchange="correcaoDoDado('month')"
+              required
+            />
+          </div>
+          <div className="birthday-date">
+            <p className="subtitle">Year*</p>
+            <input
+              type="number"
+              min="1940"
+              max="2021"
+              name="year"
+              id="year"
+              className="input input-tab1"
+              onchange="correcaoDoDado('year')"
+              required
+            />
+          </div>
+          <div className="birthday-date">
+            <p className="subtitle">Age*</p>
+            <input
+              type="number"
+              min="01"
+              max="81"
+              name="age"
+              id="age"
+              className="input input-tab1"
+              onchange="correcaoDoDado('age')"
+              required
+            />
+          </div>
+        </div>
+
+        <p className="subtitle checkbox">
+          <input
+            name="termos"
+            id="frase"
+            className="input-tab1"
+            type="checkbox"
+            required
+            onchange="correcaoDoDado('frase')"
+          />{" "}
+          I accept the terms and privacy.
+        </p>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <div className="formbox">
+          <p className="subtitle">LinkedIn</p>
+          <input
+            name="linkedIn"
+            type="url"
+            id="linkedin"
+            className="input input-tab2"
+            placeholder="linkedin.com/in/foo-bar-3a0560104/"
+            onchange="correcaoDoDado('linkedin')"
+          />
+        </div>
+
+        <div className="formbox">
+          <p className="subtitle">GitHub*</p>
+          <input
+            name="Github"
+            type="url"
+            id="Github"
+            className="input input-tab2"
+            placeholder="github.com/in/foo-bar-3a0560104/"
+            onchange="correcaoDoDado('Github')"
+            required
+          />
+        </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <div className="formbox">
+          <p className="subtitle">Certificates</p>
+          <input
+            type="url"
+            id="certificate"
+            name="certificate"
+            className="input input-tab3 input-certificate"
+            placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
+            onchange="correcaoDoDado('certificate')"
+          />
+          <i
+            onclick="clickFav(this)"
+            className="heart fa fa-heart-o"
+            id="fav"
+          ></i>
+        </div>
+
+        <div className="formbox flexflow">
+          <button id="myBtn" onclick="" class="btnDefault">
+            <img src="assets/icons/Vector.svg" alt="Sinal de mais" />
+            More
+          </button>
+        </div>
+        <div class="formbox">
+          <p class="subtitle">Team Name*</p>
+          <input
+            type="url"
+            id="teamName"
+            name="team name"
+            class="input input-tab3"
+            placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
+            onchange="correcaoDoDado('teamName')"
+            required
+          />
+        </div>
+
+        <div class="formbox">
+          <p class="subtitle">Institution*</p>
+          <input
+            type="text"
+            id="institution"
+            name="institution"
+            class="input input-tab3"
+            placeholder="Universidade da Paraíba"
+            onchange="correcaoDoDado('institution')"
+            required
+          />
+        </div>
+
+        <div class="formbox">
+          <p class="subtitle">Graduation*</p>
+          <input
+            type="text"
+            id="graduation"
+            name="graduation"
+            class="input input-tab3"
+            placeholder="Ciências da Computação"
+            onchange="correcaoDoDado('graduation')"
+            required
+          />
+        </div>
+
+        <div id="footerForm">
+          <button
+            id="btnNext"
+            onclick="formController.nextForm()"
+            class="btnDefault"
+          >
+            Next
+            <img src="assets/icons/Trailing Icon.svg" alt="Flecha de seguir" />
+          </button>
+          <button
+            id="btnFinish"
+            onclick="formController.finishForm()"
+            class="btnDefault displayNone"
+          >
+            <img
+              src="assets/icons/Leading Icon.svg"
+              alt="Check de confirmação"
+            />
+            Finish
+          </button>
+        </div>
       </TabPanel>
     </Box>
   );
