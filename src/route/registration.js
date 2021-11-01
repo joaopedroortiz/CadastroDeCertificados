@@ -1,6 +1,6 @@
 import React from "react";
 
-import BasicTabs from "../components/Tab";
+import BasicTabs from "../components/BasicTabs";
 import "../Index.css";
 function Registration() {
   return (

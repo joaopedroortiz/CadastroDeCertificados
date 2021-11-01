@@ -1,13 +1,22 @@
-import * as React from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import "../Index.css";
+import { color } from "@mui/system";
+import { styled } from "@mui/material/styles";
+
+const CustomTab = styled(Tabs)`
+  button {
+    text-decoration: captalize !important;
+  }
+`;
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  console.log("index:" + index);
   return (
     <div
       role="tabpanel"
@@ -40,7 +49,6 @@ function a11yProps(index) {
 
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -53,16 +61,21 @@ export default function BasicTabs() {
           borderColor: "divider",
         }}
       >
-        <Tabs
+        <CustomTab
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
           centered
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            textTransform: "captalize",
+          }}
         >
           <Tab label="Basic" {...a11yProps(0)} />
           <Tab label="Social" {...a11yProps(1)} />
           <Tab label="Certificates" {...a11yProps(2)} />
-        </Tabs>
+        </CustomTab>
       </Box>
       <TabPanel value={value} index={0}>
         <div className="formbox">
@@ -241,67 +254,76 @@ export default function BasicTabs() {
             More
           </button>
         </div>
-        <div class="formbox">
-          <p class="subtitle">Team Name*</p>
+        <div className="formbox">
+          <p className="subtitle">Team Name*</p>
           <input
             type="url"
             id="teamName"
             name="team name"
-            class="input input-tab3"
+            className="input input-tab3"
             placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
             onchange="correcaoDoDado('teamName')"
             required
           />
         </div>
 
-        <div class="formbox">
-          <p class="subtitle">Institution*</p>
+        <div className="formbox">
+          <p className="subtitle">Institution*</p>
           <input
             type="text"
             id="institution"
             name="institution"
-            class="input input-tab3"
+            className="input input-tab3"
             placeholder="Universidade da Paraíba"
             onchange="correcaoDoDado('institution')"
             required
           />
         </div>
 
-        <div class="formbox">
-          <p class="subtitle">Graduation*</p>
+        <div className="formbox">
+          <p className="subtitle">Graduation*</p>
           <input
             type="text"
             id="graduation"
             name="graduation"
-            class="input input-tab3"
+            className="input input-tab3"
             placeholder="Ciências da Computação"
             onchange="correcaoDoDado('graduation')"
             required
           />
         </div>
-
-        <div id="footerForm">
+      </TabPanel>
+      <div id="footerForm">
+        {value < 2 ? (
           <button
+            type="button"
             id="btnNext"
-            onclick="formController.nextForm()"
-            class="btnDefault"
+            onClick={() => setValue(value + 1)}
+            className="btnDefault"
           >
             Next
-            <img src="assets/icons/Trailing Icon.svg" alt="Flecha de seguir" />
+            {/* <img src="assets/icons/Trailing Icon.svg" alt="Flecha de seguir" /> */}
           </button>
+        ) : (
           <button
-            id="btnFinish"
-            onclick="formController.finishForm()"
-            class="btnDefault displayNone"
+            id="btnNext"
+            onClick={console.log("enviado")}
+            className="btnDefault"
           >
-            <img
-              src="assets/icons/Leading Icon.svg"
-              alt="Check de confirmação"
-            />
             Finish
+            {/* <img src="assets/icons/Trailing Icon.svg" alt="Flecha de seguir" /> */}
           </button>
-        </div>
-      </TabPanel>
+        )}
+
+        {/* <button
+          id="btnFinish"
+          onclick="formController.finishForm()"
+          className="btnDefault displayNone"
+        >
+          <img src="assets/icons/Leading Icon.svg" alt="Check de confirmação" />
+          Finish
+        </button> */}
+      </div>
     </Box>
   );
 }
