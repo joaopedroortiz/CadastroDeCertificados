@@ -28,7 +28,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 3, padding: "0px" }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -56,7 +56,7 @@ export default function BasicTabs() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", padding: "0px" }}>
       <Box
         sx={{
           borderBottom: 1,
