@@ -9,7 +9,6 @@ import Favorite from "@mui/icons-material/Favorite";
 import Fab from "@mui/material/Fab";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { display } from "@mui/system";
 
 const theme = createTheme({
   palette: {
@@ -29,8 +28,15 @@ const style = {
   borderRadius: "20px",
   padding: "45px",
   marginTop: "40px",
+  "@media (max-width: 655px)": {
+    borderRadius: "0px",
+    maxWidth: "100%",
+    maxHeight: "100%",
+    width: "100%",
+    height: "100%",
+    marginTop: "0",
+  },
 };
-
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function BasicModal() {
@@ -39,7 +45,7 @@ export default function BasicModal() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
+    <div style={{ display: "flex", justifyContent: "end" }}>
       <Button
         sx={{
           textTransform: "none",
@@ -78,7 +84,6 @@ export default function BasicModal() {
                 name="certificate"
                 className="input input-tab3 input-certificate"
                 placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
-                onchange="correcaoDoDado('certificate')"
               />
               <Checkbox
                 sx={{ position: "absolute", right: "0" }}
@@ -97,7 +102,6 @@ export default function BasicModal() {
                 name="certificate"
                 className="input input-tab3 input-certificate"
                 placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
-                onchange="correcaoDoDado('certificate')"
               />
               <Checkbox
                 sx={{ position: "absolute", right: "0" }}
@@ -116,7 +120,6 @@ export default function BasicModal() {
                 name="certificate"
                 className="input input-tab3 input-certificate"
                 placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
-                onchange="correcaoDoDado('certificate')"
               />
               <Checkbox
                 sx={{ position: "absolute", right: "0" }}
@@ -135,7 +138,6 @@ export default function BasicModal() {
                 name="certificate"
                 className="input input-tab3 input-certificate"
                 placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
-                onchange="correcaoDoDado('certificate')"
               />
               <Checkbox
                 sx={{ position: "absolute", right: "0" }}
@@ -154,7 +156,6 @@ export default function BasicModal() {
                 name="certificate"
                 className="input input-tab3 input-certificate"
                 placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
-                onchange="correcaoDoDado('certificate')"
               />
               <Checkbox
                 sx={{ position: "absolute", right: "0" }}
@@ -177,6 +178,7 @@ export default function BasicModal() {
                 sx={{ position: "relative", right: "0" }}
                 color="primary"
                 aria-label="add"
+                onClick={() => handleClose()}
               >
                 <ArrowBackIcon />
               </Fab>

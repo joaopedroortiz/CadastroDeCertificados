@@ -44,45 +44,6 @@ h4 {
   font-size: 24px;
 }
 
-.tabs {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  height: 48px;
-  width: 100%;
-  margin-top: 30px;
-}
-
-.chooseTabs {
-  height: 48px;
-  width: 33.33%;
-  display: flex;
-  flex-flow: column;
-  text-align: center;
-  justify-content: center;
-  font-size: 16px;
-  font-family: Nunito;
-  border-bottom: solid 2px #aaa;
-  cursor: pointer;
-}
-.choose {
-  transition: border 0.5s, color 0.5s;
-  color: #074ee8;
-  border-bottom: solid 3px #074ee8;
-}
-
-.nome,
-.nickname {
-  width: 515px;
-  height: 16px;
-  top: -20px;
-  font-family: Nunito;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 16px;
-  font-weight: 400;
-}
-
 .title {
   width: 515px;
   height: 48px;
@@ -156,55 +117,9 @@ h4 {
   font-size: 16px !important;
 }
 
-.tabs {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  height: 48px;
-  width: 100%;
-  margin-top: 30px;
-}
-
-.chooseTabs {
-  height: 48px;
-  width: 33.33%;
-  display: flex;
-  flex-flow: column;
-  text-align: center;
-  justify-content: center;
-  font-size: 16px;
-  font-family: Nunito;
-  border-bottom: solid 2px #aaa;
-  cursor: pointer;
-}
-.choose {
-  transition: border 0.5s, color 0.5s;
-  color: #074ee8;
-  border-bottom: solid 3px #074ee8;
-}
-
 .card-inputs {
   width: 100%;
   height: 506px;
-}
-
-.btnDefault {
-  display: flex;
-  align-items: center;
-  background-color: #074ee8;
-  font-size: 16px;
-  font-family: Nunito;
-  color: #fff;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.btnDefault:active {
-  background-color: #0e42b1;
-}
-.displayNone {
-  display: none;
 }
 
 .modal-certificates {
@@ -232,6 +147,7 @@ h4 {
 .formboxCard {
   margin: 40px 0;
 }
+
 .input {
   font-size: 16px;
   color: #767676;
@@ -242,44 +158,10 @@ h4 {
   padding-left: 10px;
 }
 
-.input-certificate {
-  padding-right: 32px;
-}
-
-.heart {
-  float: right;
-  margin: -28px 10px 0 0;
-  position: relative;
-  cursor: pointer;
-}
-.modal-certificates h4 {
-  font-size: 18px;
-  margin-bottom: 80px;
-}
-
-#backbutton {
-  float: right;
-  margin-top: 55px;
-}
-
-.flexflow {
-  display: flex;
-  justify-content: flex-end;
-}
-
 h3 {
   color: #fff;
   font-weight: normal;
   margin-bottom: 30px;
-}
-
-.fundoBlack {
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0px;
-  left: 0px;
 }
 
 .popupFinish {

@@ -3,22 +3,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import CheckIcon from "@mui/icons-material/Check";
-
-import "../Index.css";
 import BasicModal from "./Modal";
+import "../Index.css";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-  console.log("index:" + index);
   return (
     <div
       role="tabpanel"
@@ -29,7 +26,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3, padding: "0px" }}>
-          <Typography>{children}</Typography>
+          <div>{children}</div>
         </Box>
       )}
     </div>
@@ -99,7 +96,6 @@ export default function BasicTabs() {
             type="text"
             id="n1"
             className="input input-tab1"
-            onchange="correcaoDoDado('n1')"
             placeholder="Foo Bar"
             required
           />
@@ -112,7 +108,6 @@ export default function BasicTabs() {
             type="text"
             id="nk"
             className="input input-tab1"
-            onchange="correcaoDoDado('nk')"
             placeholder="Juanito"
             required
           />
@@ -127,7 +122,6 @@ export default function BasicTabs() {
               type="email"
               id="email"
               className="input input-tab1"
-              onchange="correcaoDoDado('email')"
               placeholder="foo@bar.com"
               required
             />
@@ -140,7 +134,6 @@ export default function BasicTabs() {
               type="text"
               id="tel"
               className="input input-tab1"
-              onchange="correcaoDoDado('tel')"
               placeholder="(00) 0 0000-0000"
               required
             />
@@ -160,7 +153,6 @@ export default function BasicTabs() {
               name="day"
               id="day"
               className="input input-tab1"
-              onchange="correcaoDoDado('day')"
               required
             />
           </div>
@@ -173,7 +165,6 @@ export default function BasicTabs() {
               name="month"
               id="month"
               className="input input-tab1"
-              onchange="correcaoDoDado('month')"
               required
             />
           </div>
@@ -186,7 +177,6 @@ export default function BasicTabs() {
               name="year"
               id="year"
               className="input input-tab1"
-              onchange="correcaoDoDado('year')"
               required
             />
           </div>
@@ -199,7 +189,6 @@ export default function BasicTabs() {
               name="age"
               id="age"
               className="input input-tab1"
-              onchange="correcaoDoDado('age')"
               required
             />
           </div>
@@ -212,7 +201,6 @@ export default function BasicTabs() {
             className="input-tab1"
             type="checkbox"
             required
-            onchange="correcaoDoDado('frase')"
           />{" "}
           I accept the terms and privacy.
         </p>
@@ -226,7 +214,6 @@ export default function BasicTabs() {
             id="linkedin"
             className="input input-tab2"
             placeholder="linkedin.com/in/foo-bar-3a0560104/"
-            onchange="correcaoDoDado('linkedin')"
           />
         </div>
 
@@ -238,7 +225,6 @@ export default function BasicTabs() {
             id="Github"
             className="input input-tab2"
             placeholder="github.com/in/foo-bar-3a0560104/"
-            onchange="correcaoDoDado('Github')"
             required
           />
         </div>
@@ -253,7 +239,6 @@ export default function BasicTabs() {
               name="certificate"
               className="input input-tab3 input-certificate"
               placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
-              onchange="correcaoDoDado('certificate')"
             />
             <Checkbox
               sx={{ position: "absolute", right: "0" }}
@@ -275,7 +260,6 @@ export default function BasicTabs() {
             name="team name"
             className="input input-tab3"
             placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
-            onchange="correcaoDoDado('teamName')"
             required
           />
         </div>
@@ -288,7 +272,6 @@ export default function BasicTabs() {
             name="institution"
             className="input input-tab3"
             placeholder="Universidade da Paraíba"
-            onchange="correcaoDoDado('institution')"
             required
           />
         </div>
@@ -301,7 +284,6 @@ export default function BasicTabs() {
             name="graduation"
             className="input input-tab3"
             placeholder="Ciências da Computação"
-            onchange="correcaoDoDado('graduation')"
             required
           />
         </div>
@@ -320,7 +302,7 @@ export default function BasicTabs() {
         ) : (
           <button
             id="btnNext"
-            onClick={console.log("enviado")}
+            onClick={() => console.log("enviado bem")}
             className="btnDefault"
           >
             Finish
