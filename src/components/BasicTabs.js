@@ -1,18 +1,20 @@
 import React from "react";
+
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import "../Index.css";
-import { color } from "@mui/system";
-import { styled } from "@mui/material/styles";
+import Checkbox from "@mui/material/Checkbox";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import CheckIcon from "@mui/icons-material/Check";
 
-const CustomTab = styled(Tabs)`
-  button {
-    text-decoration: captalize !important;
-  }
-`;
+import "../Index.css";
+import BasicModal from "./Modal";
+
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -61,21 +63,32 @@ export default function BasicTabs() {
           borderColor: "divider",
         }}
       >
-        <CustomTab
+        <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
-          centered
+          variant="fullWidth"
           sx={{
             display: "flex",
-            justifyContent: "space-between",
-            textTransform: "captalize",
+            justifyContent: "space-around",
           }}
         >
-          <Tab label="Basic" {...a11yProps(0)} />
-          <Tab label="Social" {...a11yProps(1)} />
-          <Tab label="Certificates" {...a11yProps(2)} />
-        </CustomTab>
+          <Tab
+            sx={{ textTransform: "none", fontSize: "16px" }}
+            label="Basic"
+            {...a11yProps(0)}
+          />
+          <Tab
+            sx={{ textTransform: "none", fontSize: "16px" }}
+            label="Social"
+            {...a11yProps(1)}
+          />
+          <Tab
+            sx={{ textTransform: "none", fontSize: "16px" }}
+            label="Certificates"
+            {...a11yProps(2)}
+          />
+        </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
         <div className="formbox">
@@ -233,26 +246,26 @@ export default function BasicTabs() {
       <TabPanel value={value} index={2}>
         <div className="formbox">
           <p className="subtitle">Certificates</p>
-          <input
-            type="url"
-            id="certificate"
-            name="certificate"
-            className="input input-tab3 input-certificate"
-            placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
-            onchange="correcaoDoDado('certificate')"
-          />
-          <i
-            onclick="clickFav(this)"
-            className="heart fa fa-heart-o"
-            id="fav"
-          ></i>
+          <div style={{ position: "relative" }}>
+            <input
+              type="url"
+              id="certificate"
+              name="certificate"
+              className="input input-tab3 input-certificate"
+              placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
+              onchange="correcaoDoDado('certificate')"
+            />
+            <Checkbox
+              sx={{ position: "absolute", right: "0" }}
+              {...label}
+              icon={<FavoriteBorder />}
+              checkedIcon={<Favorite />}
+            />
+          </div>
         </div>
 
         <div className="formbox flexflow">
-          <button id="myBtn" onclick="" class="btnDefault">
-            <img src="assets/icons/Vector.svg" alt="Sinal de mais" />
-            More
-          </button>
+          <BasicModal></BasicModal>
         </div>
         <div className="formbox">
           <p className="subtitle">Team Name*</p>
@@ -302,7 +315,7 @@ export default function BasicTabs() {
             className="btnDefault"
           >
             Next
-            {/* <img src="assets/icons/Trailing Icon.svg" alt="Flecha de seguir" /> */}
+            <KeyboardArrowRightIcon />
           </button>
         ) : (
           <button
@@ -311,18 +324,9 @@ export default function BasicTabs() {
             className="btnDefault"
           >
             Finish
-            {/* <img src="assets/icons/Trailing Icon.svg" alt="Flecha de seguir" /> */}
+            <CheckIcon />
           </button>
         )}
-
-        {/* <button
-          id="btnFinish"
-          onclick="formController.finishForm()"
-          className="btnDefault displayNone"
-        >
-          <img src="assets/icons/Leading Icon.svg" alt="Check de confirmação" />
-          Finish
-        </button> */}
       </div>
     </Box>
   );

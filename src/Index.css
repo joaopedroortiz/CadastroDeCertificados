@@ -92,7 +92,7 @@ h4 {
 #footerForm {
   display: flex;
   flex-direction: row-reverse;
-  /* padding: 45px 0; */
+  margin-right: 22px;
 }
 .btnDefault {
   display: flex;
