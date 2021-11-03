@@ -13,6 +13,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import CheckIcon from "@mui/icons-material/Check";
 import BasicModal from "./Modal";
 import FinishModal from "./FinishModal";
+import Error from "./Error";
 
 import "../Index.css";
 
@@ -63,7 +64,18 @@ export default function BasicTabs() {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => {
+
+  const onBasicSubmit = (data) => {
+    console.log(data);
+    setValue(value + 1);
+  };
+
+  const onSocialSubmit = (data) => {
+    console.log(data);
+    setValue(value + 1);
+  };
+
+  const onCertificatesSubmit = (data) => {
     console.log(data);
     setOpen(true);
   };
@@ -103,54 +115,75 @@ export default function BasicTabs() {
           />
         </Tabs>
       </Box>{" "}
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onBasicSubmit)}>
         <TabPanel value={value} index={0}>
           <div className="formbox">
             <p className="subtitle">Full Name*</p>
-
             <input
               type="text"
               className="input input-tab1"
               placeholder="Foo Bar"
+              {...register("FullName", {
+                required: "Required",
+              })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="FullName"
+              as={<Error text={"Required"} />}
             />
           </div>
           <div className="formbox">
             <p className="subtitle">Nickname*</p>
 
             <input
-              {...register("nickname")}
               type="text"
               className="input input-tab1"
               placeholder="Juanito"
-              required
+              {...register("NickName", {
+                required: "Required",
+              })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="NickName"
+              as={<Error text={"Required"} />}
             />
           </div>
-
           <div className="contato">
             <div className="formbox formbox-email">
               <p className="subtitle">E-mail*</p>
-
               <input
-                {...register("email")}
                 type="email"
                 className="input input-tab1"
                 placeholder="foo@bar.com"
-                required
+                {...register("email", {
+                  required: "Required",
+                })}
+              />
+              <ErrorMessage
+                errors={errors}
+                name="email"
+                as={<Error text={"Required"} />}
               />
             </div>
             <div className="formbox formbox-phone">
               <p className="subtitle">Phone*</p>
-
               <input
-                {...register("phone")}
                 type="text"
                 className="input input-tab1"
                 placeholder="(00) 0 0000-0000"
-                required
+                {...register("phone", {
+                  required: "Required",
+                })}
+              />
+              <ErrorMessage
+                errors={errors}
+                name="phone"
+                as={<Error text={"Required"} />}
               />
             </div>
           </div>
-
           <p id="birthday-text" className="subtitle">
             Birthday*
           </p>
@@ -158,81 +191,140 @@ export default function BasicTabs() {
             <div className="birthday-date">
               <p className="subtitle">Day*</p>
               <input
-                {...register("b-day")}
                 type="number"
                 min="01"
                 max="31"
                 className="input input-tab1"
-                required
+                {...register("b-day", {
+                  required: "Required",
+                })}
+              />
+              <ErrorMessage
+                errors={errors}
+                name="b-day"
+                as={<Error text={"Required"} />}
               />
             </div>
             <div className="birthday-date">
               <p className="subtitle">Month*</p>
               <input
-                {...register("b-month")}
                 type="number"
                 min="01"
                 max="12"
                 className="input input-tab1"
-                required
+                {...register("b-month", {
+                  required: "Required",
+                })}
+              />
+              <ErrorMessage
+                errors={errors}
+                name="b-month"
+                as={<Error text={"Required"} />}
               />
             </div>
             <div className="birthday-date">
               <p className="subtitle">Year*</p>
               <input
-                {...register("b-year")}
                 type="number"
                 min="1940"
                 max="2021"
                 className="input input-tab1"
-                required
+                {...register("b-year", {
+                  required: "Required",
+                })}
+              />
+              <ErrorMessage
+                errors={errors}
+                name="b-year"
+                as={<Error text={"Required"} />}
               />
             </div>
             <div className="birthday-date">
               <p className="subtitle">Age*</p>
               <input
-                {...register("age")}
                 type="number"
                 min="01"
                 max="81"
                 className="input input-tab1"
-                required
+                {...register("age", {
+                  required: "Required",
+                })}
+              />
+              <ErrorMessage
+                errors={errors}
+                name="age"
+                as={<Error text={"Required"} />}
               />
             </div>
           </div>
-
           <p className="subtitle checkbox">
             <input
-              {...register("terms")}
               className="input-tab1"
               type="checkbox"
-              required
-            />{" "}
+              {...register("terms", {
+                required: "Required",
+              })}
+            />
             I accept the terms and privacy.
-          </p>
+          </p>{" "}
+          <ErrorMessage
+            errors={errors}
+            name="terms"
+            as={<Error text={"Required"} />}
+          />
+          <div id="footerForm">
+            <button type="submit" id="btnNext" className="btnDefault">
+              Next
+              <KeyboardArrowRightIcon />
+            </button>
+          </div>
         </TabPanel>
+      </form>
+      <form onSubmit={handleSubmit(onSocialSubmit)}>
         <TabPanel value={value} index={1}>
           <div className="formbox">
             <p className="subtitle">LinkedIn</p>
             <input
-              {...register("linkedin")}
               type="url"
               className="input input-tab2"
               placeholder="linkedin.com/in/foo-bar-3a0560104/"
+              {...register("linkedin", {
+                required: "Required",
+              })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="linkedin"
+              as={<Error text={"Required"} />}
             />
           </div>
 
           <div className="formbox">
             <p className="subtitle">GitHub*</p>
             <input
-              {...register("github")}
               type="url"
               className="input input-tab2"
               placeholder="github.com/in/foo-bar-3a0560104/"
               required
+              {...register("github", {
+                required: "Required",
+              })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="github"
+              as={<Error text={"Required"} />}
             />
           </div>
+          <div id="footerForm">
+            <button type="submit" id="btnNext" className="btnDefault">
+              Next
+              <KeyboardArrowRightIcon />
+            </button>
+          </div>
         </TabPanel>
+      </form>
+      <form onSubmit={handleSubmit(onCertificatesSubmit)}>
         <TabPanel value={value} index={2}>
           <div className="formbox">
             <p className="subtitle">Certificates</p>
@@ -259,62 +351,85 @@ export default function BasicTabs() {
           <div className="formbox">
             <p className="subtitle">Team Name*</p>
             <input
-              {...register("teamName")}
               type="url"
               className="input input-tab3"
               placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
-              required
+              {...register("teamName", {
+                required: "Required",
+              })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="teamName"
+              as={<Error text={"Required"} />}
             />
           </div>
 
           <div className="formbox">
             <p className="subtitle">Institution*</p>
             <input
-              {...register("Institution")}
               type="text"
               className="input input-tab3"
               placeholder="Universidade da Paraíba"
-              required
+              {...register("Institution", {
+                required: "Required",
+              })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="Institution"
+              as={<Error text={"Required"} />}
             />
           </div>
 
           <div className="formbox">
             <p className="subtitle">Graduation*</p>
             <input
-              {...register("Graduation")}
               type="text"
               className="input input-tab3"
               placeholder="Ciências da Computação"
-              required
+              {...register("Graduation", {
+                required: "Required",
+              })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="Graduation"
+              as={<Error text={"Required"} />}
             />
           </div>
+          <div id="footerForm">
+            <button type="submit" id="btnNext" className="btnDefault">
+              Finish <CheckIcon />
+            </button>
+          </div>
         </TabPanel>
-        <div id="footerForm">
-          {value < 2 ? (
-            <button
-              type="button"
-              id="btnNext"
-              onClick={() => setValue(value + 1)}
-              className="btnDefault"
-            >
-              Next
-              <KeyboardArrowRightIcon />
-            </button>
-          ) : (
-            <button
-              id="btnNext"
-              type="submit"
-              onClick={() => {
-                onSubmit();
-              }}
-              className="btnDefault"
-            >
-              Finish
-              <CheckIcon />
-            </button>
-          )}
-        </div>
       </form>
+      {/* <div id="footerForm">
+        {value < 2 ? (
+          <button
+            type="submit"
+            id="btnNext"
+            // onClick={() => setValue(value + 1)}
+            className="btnDefault"
+          >
+            Next
+            <KeyboardArrowRightIcon />
+          </button>
+        ) : (
+          <button
+            id="btnNext"
+            type="submit"
+            // onClick={() => {
+            //   onSubmit();
+            // }}
+            className="btnDefault"
+          >
+            Finish
+            
+          </button>
+        )}
+      </div> */}
       <FinishModal open={open} handleClose={setOpen} />
     </Box>
   );

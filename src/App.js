@@ -1,6 +1,6 @@
-import Registration from "./route/registration";
-
+import Registration from "./routes/registration";
 import "./Index.css";
+
 function App() {
   return (
     <div className="subbody">
