@@ -9,7 +9,7 @@ function Registration() {
         style={{
           fontSize: "18px",
           fontFamily: "Inter",
-          marginBottom: "30px",
+          marginBottom: "0px",
         }}
       >
         Team Sign Up

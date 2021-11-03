@@ -39,7 +39,7 @@ const style = {
 };
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-export default function BasicModal() {
+export default function BasicModal({ register }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -79,13 +79,13 @@ export default function BasicModal() {
             <p className="subtitle">Certificates</p>
             <div style={{ position: "relative" }}>
               <input
+                {...register("certificate-2")}
                 type="url"
-                id="certificate"
-                name="certificate"
                 className="input input-tab3 input-certificate"
                 placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
               />
               <Checkbox
+                {...register("favorite-2")}
                 sx={{ position: "absolute", right: "0" }}
                 {...label}
                 icon={<FavoriteBorder />}
@@ -97,13 +97,13 @@ export default function BasicModal() {
             <p className="subtitle">Certificates</p>
             <div style={{ position: "relative" }}>
               <input
+                {...register("certificate-3")}
                 type="url"
-                id="certificate"
-                name="certificate"
                 className="input input-tab3 input-certificate"
                 placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
               />
               <Checkbox
+                {...register("favorite-3")}
                 sx={{ position: "absolute", right: "0" }}
                 {...label}
                 icon={<FavoriteBorder />}
@@ -115,13 +115,13 @@ export default function BasicModal() {
             <p className="subtitle">Certificates</p>
             <div style={{ position: "relative" }}>
               <input
+                {...register("certificate-4")}
                 type="url"
-                id="certificate"
-                name="certificate"
                 className="input input-tab3 input-certificate"
                 placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
               />
               <Checkbox
+                {...register("favorite-4")}
                 sx={{ position: "absolute", right: "0" }}
                 {...label}
                 icon={<FavoriteBorder />}
@@ -133,13 +133,13 @@ export default function BasicModal() {
             <p className="subtitle">Certificates</p>
             <div style={{ position: "relative" }}>
               <input
+                {...register("certificate-5")}
                 type="url"
-                id="certificate"
-                name="certificate"
                 className="input input-tab3 input-certificate"
                 placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
               />
               <Checkbox
+                {...register("favorite-5")}
                 sx={{ position: "absolute", right: "0" }}
                 {...label}
                 icon={<FavoriteBorder />}
@@ -151,13 +151,13 @@ export default function BasicModal() {
             <p className="subtitle">Certificates</p>
             <div style={{ position: "relative" }}>
               <input
+                {...register("certificate-6")}
                 type="url"
-                id="certificate"
-                name="certificate"
                 className="input input-tab3 input-certificate"
                 placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
               />
               <Checkbox
+                {...register("favorite-6")}
                 sx={{ position: "absolute", right: "0" }}
                 {...label}
                 icon={<FavoriteBorder />}

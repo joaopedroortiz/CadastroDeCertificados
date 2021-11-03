@@ -1,4 +1,6 @@
-import React from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
@@ -10,6 +12,8 @@ import Favorite from "@mui/icons-material/Favorite";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import CheckIcon from "@mui/icons-material/Check";
 import BasicModal from "./Modal";
+import FinishModal from "./FinishModal";
+
 import "../Index.css";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -47,9 +51,21 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+  const [open, setOpen] = useState(false);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    setOpen(true);
   };
 
   return (
@@ -86,230 +102,220 @@ export default function BasicTabs() {
             {...a11yProps(2)}
           />
         </Tabs>
-      </Box>
-      <TabPanel value={value} index={0}>
-        <div className="formbox">
-          <p className="subtitle">Full Name*</p>
-
-          <input
-            name="name"
-            type="text"
-            id="n1"
-            className="input input-tab1"
-            placeholder="Foo Bar"
-            required
-          />
-        </div>
-        <div className="formbox">
-          <p className="subtitle">Nickname*</p>
-
-          <input
-            name="nickname"
-            type="text"
-            id="nk"
-            className="input input-tab1"
-            placeholder="Juanito"
-            required
-          />
-        </div>
-
-        <div className="contato">
-          <div className="formbox formbox-email">
-            <p className="subtitle">E-mail*</p>
+      </Box>{" "}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <TabPanel value={value} index={0}>
+          <div className="formbox">
+            <p className="subtitle">Full Name*</p>
 
             <input
-              name="email"
-              type="email"
-              id="email"
-              className="input input-tab1"
-              placeholder="foo@bar.com"
-              required
-            />
-          </div>
-          <div className="formbox formbox-phone">
-            <p className="subtitle">Phone*</p>
-
-            <input
-              name="phone"
               type="text"
-              id="tel"
               className="input input-tab1"
-              placeholder="(00) 0 0000-0000"
-              required
+              placeholder="Foo Bar"
             />
           </div>
-        </div>
+          <div className="formbox">
+            <p className="subtitle">Nickname*</p>
 
-        <p id="birthday-text" className="subtitle">
-          Birthday*
-        </p>
-        <div className="birthday">
-          <div className="birthday-date">
-            <p className="subtitle">Day*</p>
             <input
-              type="number"
-              min="01"
-              max="31"
-              name="day"
-              id="day"
+              {...register("nickname")}
+              type="text"
               className="input input-tab1"
+              placeholder="Juanito"
               required
             />
           </div>
-          <div className="birthday-date">
-            <p className="subtitle">Month*</p>
-            <input
-              type="number"
-              min="01"
-              max="12"
-              name="month"
-              id="month"
-              className="input input-tab1"
-              required
-            />
-          </div>
-          <div className="birthday-date">
-            <p className="subtitle">Year*</p>
-            <input
-              type="number"
-              min="1940"
-              max="2021"
-              name="year"
-              id="year"
-              className="input input-tab1"
-              required
-            />
-          </div>
-          <div className="birthday-date">
-            <p className="subtitle">Age*</p>
-            <input
-              type="number"
-              min="01"
-              max="81"
-              name="age"
-              id="age"
-              className="input input-tab1"
-              required
-            />
-          </div>
-        </div>
 
-        <p className="subtitle checkbox">
-          <input
-            name="termos"
-            id="frase"
-            className="input-tab1"
-            type="checkbox"
-            required
-          />{" "}
-          I accept the terms and privacy.
-        </p>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <div className="formbox">
-          <p className="subtitle">LinkedIn</p>
-          <input
-            name="linkedIn"
-            type="url"
-            id="linkedin"
-            className="input input-tab2"
-            placeholder="linkedin.com/in/foo-bar-3a0560104/"
-          />
-        </div>
+          <div className="contato">
+            <div className="formbox formbox-email">
+              <p className="subtitle">E-mail*</p>
 
-        <div className="formbox">
-          <p className="subtitle">GitHub*</p>
-          <input
-            name="Github"
-            type="url"
-            id="Github"
-            className="input input-tab2"
-            placeholder="github.com/in/foo-bar-3a0560104/"
-            required
-          />
-        </div>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <div className="formbox">
-          <p className="subtitle">Certificates</p>
-          <div style={{ position: "relative" }}>
+              <input
+                {...register("email")}
+                type="email"
+                className="input input-tab1"
+                placeholder="foo@bar.com"
+                required
+              />
+            </div>
+            <div className="formbox formbox-phone">
+              <p className="subtitle">Phone*</p>
+
+              <input
+                {...register("phone")}
+                type="text"
+                className="input input-tab1"
+                placeholder="(00) 0 0000-0000"
+                required
+              />
+            </div>
+          </div>
+
+          <p id="birthday-text" className="subtitle">
+            Birthday*
+          </p>
+          <div className="birthday">
+            <div className="birthday-date">
+              <p className="subtitle">Day*</p>
+              <input
+                {...register("b-day")}
+                type="number"
+                min="01"
+                max="31"
+                className="input input-tab1"
+                required
+              />
+            </div>
+            <div className="birthday-date">
+              <p className="subtitle">Month*</p>
+              <input
+                {...register("b-month")}
+                type="number"
+                min="01"
+                max="12"
+                className="input input-tab1"
+                required
+              />
+            </div>
+            <div className="birthday-date">
+              <p className="subtitle">Year*</p>
+              <input
+                {...register("b-year")}
+                type="number"
+                min="1940"
+                max="2021"
+                className="input input-tab1"
+                required
+              />
+            </div>
+            <div className="birthday-date">
+              <p className="subtitle">Age*</p>
+              <input
+                {...register("age")}
+                type="number"
+                min="01"
+                max="81"
+                className="input input-tab1"
+                required
+              />
+            </div>
+          </div>
+
+          <p className="subtitle checkbox">
             <input
+              {...register("terms")}
+              className="input-tab1"
+              type="checkbox"
+              required
+            />{" "}
+            I accept the terms and privacy.
+          </p>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <div className="formbox">
+            <p className="subtitle">LinkedIn</p>
+            <input
+              {...register("linkedin")}
               type="url"
-              id="certificate"
-              name="certificate"
-              className="input input-tab3 input-certificate"
-              placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
-            />
-            <Checkbox
-              sx={{ position: "absolute", right: "0" }}
-              {...label}
-              icon={<FavoriteBorder />}
-              checkedIcon={<Favorite />}
+              className="input input-tab2"
+              placeholder="linkedin.com/in/foo-bar-3a0560104/"
             />
           </div>
-        </div>
 
-        <div className="formbox flexflow">
-          <BasicModal></BasicModal>
-        </div>
-        <div className="formbox">
-          <p className="subtitle">Team Name*</p>
-          <input
-            type="url"
-            id="teamName"
-            name="team name"
-            className="input input-tab3"
-            placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
-            required
-          />
-        </div>
+          <div className="formbox">
+            <p className="subtitle">GitHub*</p>
+            <input
+              {...register("github")}
+              type="url"
+              className="input input-tab2"
+              placeholder="github.com/in/foo-bar-3a0560104/"
+              required
+            />
+          </div>
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <div className="formbox">
+            <p className="subtitle">Certificates</p>
+            <div style={{ position: "relative" }}>
+              <input
+                {...register("certificate-1")}
+                type="url"
+                className="input input-tab3 input-certificate"
+                placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
+              />
+              <Checkbox
+                {...register("favorite-1")}
+                sx={{ position: "absolute", right: "0" }}
+                {...label}
+                icon={<FavoriteBorder />}
+                checkedIcon={<Favorite />}
+              />
+            </div>
+          </div>
 
-        <div className="formbox">
-          <p className="subtitle">Institution*</p>
-          <input
-            type="text"
-            id="institution"
-            name="institution"
-            className="input input-tab3"
-            placeholder="Universidade da Paraíba"
-            required
-          />
-        </div>
+          <div className="formbox flexflow">
+            <BasicModal register={register}></BasicModal>
+          </div>
+          <div className="formbox">
+            <p className="subtitle">Team Name*</p>
+            <input
+              {...register("teamName")}
+              type="url"
+              className="input input-tab3"
+              placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
+              required
+            />
+          </div>
 
-        <div className="formbox">
-          <p className="subtitle">Graduation*</p>
-          <input
-            type="text"
-            id="graduation"
-            name="graduation"
-            className="input input-tab3"
-            placeholder="Ciências da Computação"
-            required
-          />
+          <div className="formbox">
+            <p className="subtitle">Institution*</p>
+            <input
+              {...register("Institution")}
+              type="text"
+              className="input input-tab3"
+              placeholder="Universidade da Paraíba"
+              required
+            />
+          </div>
+
+          <div className="formbox">
+            <p className="subtitle">Graduation*</p>
+            <input
+              {...register("Graduation")}
+              type="text"
+              className="input input-tab3"
+              placeholder="Ciências da Computação"
+              required
+            />
+          </div>
+        </TabPanel>
+        <div id="footerForm">
+          {value < 2 ? (
+            <button
+              type="button"
+              id="btnNext"
+              onClick={() => setValue(value + 1)}
+              className="btnDefault"
+            >
+              Next
+              <KeyboardArrowRightIcon />
+            </button>
+          ) : (
+            <button
+              id="btnNext"
+              type="submit"
+              onClick={() => {
+                onSubmit();
+              }}
+              className="btnDefault"
+            >
+              Finish
+              <CheckIcon />
+            </button>
+          )}
         </div>
-      </TabPanel>
-      <div id="footerForm">
-        {value < 2 ? (
-          <button
-            type="button"
-            id="btnNext"
-            onClick={() => setValue(value + 1)}
-            className="btnDefault"
-          >
-            Next
-            <KeyboardArrowRightIcon />
-          </button>
-        ) : (
-          <button
-            id="btnNext"
-            onClick={() => console.log("enviado bem")}
-            className="btnDefault"
-          >
-            Finish
-            <CheckIcon />
-          </button>
-        )}
-      </div>
+      </form>
+      <FinishModal open={open} handleClose={setOpen} />
     </Box>
   );
 }
