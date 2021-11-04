@@ -66,12 +66,10 @@ export default function BasicTabs() {
   } = useForm();
 
   const onBasicSubmit = (data) => {
-    console.log(data);
     setValue(value + 1);
   };
 
   const onSocialSubmit = (data) => {
-    console.log(data);
     setValue(value + 1);
   };
 
