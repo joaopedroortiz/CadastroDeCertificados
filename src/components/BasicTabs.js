@@ -55,27 +55,33 @@ export default function BasicTabs() {
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const fields = {
+    basicFields: ["fullName", "nickName"],
+    socialFields: ["github", "linkedin"],
   };
 
   const {
     register,
     formState: { errors },
     handleSubmit,
+    trigger,
   } = useForm();
 
-  const onBasicSubmit = (data) => {
-    setValue(value + 1);
-  };
-
-  const onSocialSubmit = (data) => {
-    setValue(value + 1);
-  };
-
-  const onCertificatesSubmit = (data) => {
+  const onSubmit = (data) => {
     console.log(data);
     setOpen(true);
+  };
+
+  const validateStep = async (fields, nextStep) => {
+    try {
+      const validateFields = await trigger(fields);
+
+      if (validateFields) {
+        setValue(nextStep);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -88,7 +94,6 @@ export default function BasicTabs() {
       >
         <Tabs
           value={value}
-          onChange={handleChange}
           aria-label="basic tabs example"
           variant="fullWidth"
           sx={{
@@ -99,21 +104,24 @@ export default function BasicTabs() {
           <Tab
             sx={{ textTransform: "none", fontSize: "16px" }}
             label="Basic"
+            onClick={() => setValue(0)}
             {...a11yProps(0)}
           />
           <Tab
             sx={{ textTransform: "none", fontSize: "16px" }}
             label="Social"
+            onClick={() => validateStep(fields.basicFields, 1)}
             {...a11yProps(1)}
           />
           <Tab
             sx={{ textTransform: "none", fontSize: "16px" }}
+            onClick={() => validateStep(fields.socialFields, 2)}
             label="Certificates"
             {...a11yProps(2)}
           />
         </Tabs>
       </Box>{" "}
-      <form onSubmit={handleSubmit(onBasicSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <TabPanel value={value} index={0}>
           <div className="formbox">
             <p className="subtitle">Full Name*</p>
@@ -121,13 +129,13 @@ export default function BasicTabs() {
               type="text"
               className="input input-tab1"
               placeholder="Foo Bar"
-              {...register("FullName", {
+              {...register("fullName", {
                 required: "Required",
               })}
             />
             <ErrorMessage
               errors={errors}
-              name="FullName"
+              name="fullName"
               as={<Error text={"Required"} />}
             />
           </div>
@@ -138,13 +146,13 @@ export default function BasicTabs() {
               type="text"
               className="input input-tab1"
               placeholder="Juanito"
-              {...register("NickName", {
+              {...register("nickName", {
                 required: "Required",
               })}
             />
             <ErrorMessage
               errors={errors}
-              name="NickName"
+              name="nickName"
               as={<Error text={"Required"} />}
             />
           </div>
@@ -264,21 +272,24 @@ export default function BasicTabs() {
               })}
             />
             I accept the terms and privacy.
-          </p>{" "}
+          </p>
           <ErrorMessage
             errors={errors}
             name="terms"
             as={<Error text={"Required"} />}
           />
           <div id="footerForm">
-            <button type="submit" id="btnNext" className="btnDefault">
+            <button
+              type="button"
+              onClick={() => validateStep(fields.basicFields, 1)}
+              id="btnNext"
+              className="btnDefault"
+            >
               Next
               <KeyboardArrowRightIcon />
             </button>
           </div>
         </TabPanel>
-      </form>
-      <form onSubmit={handleSubmit(onSocialSubmit)}>
         <TabPanel value={value} index={1}>
           <div className="formbox">
             <p className="subtitle">LinkedIn</p>
@@ -315,14 +326,17 @@ export default function BasicTabs() {
             />
           </div>
           <div id="footerForm">
-            <button type="submit" id="btnNext" className="btnDefault">
+            <button
+              type="button"
+              onClick={() => validateStep(fields.socialFields, 2)}
+              id="btnNext"
+              className="btnDefault"
+            >
               Next
               <KeyboardArrowRightIcon />
             </button>
           </div>
         </TabPanel>
-      </form>
-      <form onSubmit={handleSubmit(onCertificatesSubmit)}>
         <TabPanel value={value} index={2}>
           <div className="formbox">
             <p className="subtitle">Certificates</p>
@@ -403,31 +417,6 @@ export default function BasicTabs() {
           </div>
         </TabPanel>
       </form>
-      {/* <div id="footerForm">
-        {value < 2 ? (
-          <button
-            type="submit"
-            id="btnNext"
-            // onClick={() => setValue(value + 1)}
-            className="btnDefault"
-          >
-            Next
-            <KeyboardArrowRightIcon />
-          </button>
-        ) : (
-          <button
-            id="btnNext"
-            type="submit"
-            // onClick={() => {
-            //   onSubmit();
-            // }}
-            className="btnDefault"
-          >
-            Finish
-            
-          </button>
-        )}
-      </div> */}
       <FinishModal open={open} handleClose={setOpen} />
     </Box>
   );
